@@ -9,9 +9,13 @@ set(CMAKE_CXX_STANDARD 20)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/PlanetsDB.txt
             ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/RoadsDB.txt
+        ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+
 add_subdirectory(Libraries)
 
-include_directories(Libraries/Planet)
+include_directories(Libraries/Planet
+                    Libraries/Road)
 
 #include_directories(${PLANET_INCLUDE_DIR})
 #list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
@@ -26,3 +30,4 @@ add_executable(${PROJECT_NAME}
         ${${PROJECT_NAME}_SOURCE_LIST})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Planet)
+target_link_libraries(${PROJECT_NAME} PRIVATE Road)
