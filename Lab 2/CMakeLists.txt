@@ -6,6 +6,9 @@ project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 20)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/PlanetsDB.txt
+            ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+
 add_subdirectory(Libraries)
 
 include_directories(Libraries/Planet)
