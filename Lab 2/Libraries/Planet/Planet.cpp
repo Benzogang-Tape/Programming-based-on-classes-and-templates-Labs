@@ -21,7 +21,7 @@ int Demo() {
 	return Menu(false);
 }
 
-int IsInteractive() {
+int Interactive() {
 	Planet planet;
 	while (int chosenOption = Menu()){
 		switch (chosenOption) {

@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 		isInteractive = true;
 	}
 	if(isInteractive){
-		return IsInteractive();
+		return Interactive();
 	}
 	return Demo();
 }

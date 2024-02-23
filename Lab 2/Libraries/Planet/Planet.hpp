@@ -25,7 +25,7 @@ int Menu(bool isInteractive = true);
 
 int Demo();
 
-int IsInteractive();
+int Interactive();
 
 
 #endif //LABS_PLANET_HPP
