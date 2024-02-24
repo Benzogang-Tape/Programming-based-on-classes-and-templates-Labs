@@ -6,7 +6,7 @@ project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories(../AbstractObject)
+#include_directories(../MenuInterface)
 
 set(${PROJECT_NAME}_SOURCES
         Road.cpp)
@@ -20,4 +20,4 @@ set(${PROJECT_NAME}_SOURCE_LIST
 
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_SOURCE_LIST})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AbstractObject)
+#target_link_libraries(${PROJECT_NAME} PRIVATE MenuInterface)

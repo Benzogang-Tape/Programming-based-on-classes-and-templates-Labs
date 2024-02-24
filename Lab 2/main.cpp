@@ -1,4 +1,3 @@
-#include <iostream>
 #include "execution_modes.hpp"
 
 int main(int argc, char* argv[]) {

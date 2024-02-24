@@ -7,19 +7,28 @@
 
 #include <iostream>
 #include <cstring>
-#include <../AbstractObject/AbstractObject.hpp>
+namespace Planet {
 
-class Planet : Abstract::AbstractObject{
-private:
-	static size_t currentPlanetCount;
-	size_t _id{};
-	const char *_name = "PLANETA";
-	unsigned _diameter{};
-	bool _lifeExists{};
-	unsigned _satellitesCount{};
-public:
-	friend std::ostream& operator << (std::ostream&, const Planet&);
-	void SomeFunk();
-};
+	class Planet {
+	private:
+		static size_t currentPlanetCount;
+		size_t _id{};
+		const char *_name = "PLANETA";
+		unsigned _diameter{};
+		bool _lifeExists{};
+		unsigned _satellitesCount{};
+	public:
+		friend std::ostream& operator << (std::ostream&, const Planet&);
+		void SomeFunk();
+		static void ReadDB();
+		static void WriteDB();
+		static void SortDB();
+		static void AddNewObject();
+		static void DeleteObject();
+		static void EditDB();
+		static void PrintDB();
+	};
+
+}
 
 #endif //LABS_PLANET_HPP

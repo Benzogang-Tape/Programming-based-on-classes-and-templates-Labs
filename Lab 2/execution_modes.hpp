@@ -7,10 +7,9 @@
 
 #include <Planet.hpp>
 #include <Road.hpp>
+#include <MenuInterface.hpp>
 
-int Interactive(std::string = "Road");
-int Demo(std::string = "Planet");
-
-
+int Interactive();
+int Demo();
 
 #endif //LABS_EXECUTION_MODES_HPP
