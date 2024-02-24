@@ -21,10 +21,15 @@ include_directories(Libraries/Planet
 #list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 set(${PROJECT_NAME}_SOURCES
-        main.cpp)
+        main.cpp
+        execution_modes.cpp)
+
+set(${PROJECT_NAME}_HEADERS
+        execution_modes.hpp)
 
 set(${PROJECT_NAME}_SOURCE_LIST
-        ${${PROJECT_NAME}_SOURCES})
+        ${${PROJECT_NAME}_SOURCES}
+        ${${PROJECT_NAME}_HEADERS})
 
 add_executable(${PROJECT_NAME}
         ${${PROJECT_NAME}_SOURCE_LIST})

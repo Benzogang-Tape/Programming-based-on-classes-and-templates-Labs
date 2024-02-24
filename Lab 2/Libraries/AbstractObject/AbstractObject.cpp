@@ -13,6 +13,20 @@ const std::string Abstract::AbstractObject::MenuInterface{ "1. Read from Databas
 														   "7. Print Database\n"
 														   "------------------------------------\n"
 														   "0. Exit\n" };
-void Abstract::AbstractObject::Menu() {
+int Abstract::AbstractObject::Menu() {
+	std::cout <<"\nWhat do you want to do? Choose from the options below:" << std::endl;
+	PrintAvailableActions();
+	while (true) {
+		std::cout << "Enter your choice: ";
+		int chosenOption{};
+		std::cin >> chosenOption;
+		if (0 <= chosenOption and chosenOption <= 7) {
+			return chosenOption;
+		}
+		std::cout << "\nWrong input. Please read available actions and try again.\n";
+	}
+}
+
+void Abstract::AbstractObject::PrintAvailableActions() {
 	std::cout << MenuInterface;
 }

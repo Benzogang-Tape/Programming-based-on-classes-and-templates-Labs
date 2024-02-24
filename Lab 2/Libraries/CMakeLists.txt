@@ -1,2 +1,3 @@
 add_subdirectory(Planet)
 add_subdirectory(Road)
+add_subdirectory(AbstractObject)

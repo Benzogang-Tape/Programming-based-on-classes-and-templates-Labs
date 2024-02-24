@@ -13,9 +13,17 @@ namespace Abstract {
 	private:
 		static const std::string MenuInterface;
 	public:
-		static void Menu();
+		static void PrintAvailableActions();
+		static int Menu();
+		virtual void ReadDB() = 0;
+		virtual void WriteDB() = 0;
+		virtual void SortDB() = 0;
+		virtual void AddNewObject() = 0;
+		virtual void DeleteObject() = 0;
+		virtual void EditDB() = 0;
+		virtual void PrintDB() = 0;
 	};
-
+	//TODO: Add const keyword to the related functions
 } // Abstract
 
 #endif //LABS_ABSTRACTOBJECT_HPP

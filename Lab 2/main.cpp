@@ -1,6 +1,5 @@
 #include <iostream>
-#include <Planet.hpp>
-#include <Road.hpp>
+#include "execution_modes.hpp"
 
 int main(int argc, char* argv[]) {
 	bool isInteractive{};

@@ -7,8 +7,9 @@
 
 #include <iostream>
 #include <cstring>
+#include <../AbstractObject/AbstractObject.hpp>
 
-class Planet {
+class Planet : Abstract::AbstractObject{
 private:
 	static size_t currentPlanetCount;
 	size_t _id{};
@@ -20,12 +21,5 @@ public:
 	friend std::ostream& operator << (std::ostream&, const Planet&);
 	void SomeFunk();
 };
-
-int Menu(bool isInteractive = true);
-
-int Demo();
-
-int Interactive();
-
 
 #endif //LABS_PLANET_HPP
