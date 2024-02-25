@@ -7,19 +7,22 @@
 
 #include <iostream>
 #include <cstring>
+#include <fstream>
+
 namespace Planet {
 
 	class Planet {
 	private:
 		static size_t currentPlanetCount;
 		size_t _id{};
-		const char *_name = "PLANETA";
+		char _name[256]{ "DEFAULT_PLANET" };
 		unsigned _diameter{};
 		bool _lifeExists{};
 		unsigned _satellitesCount{};
 	public:
+		explicit Planet(const char* = (char*)"DEFAULT_PLANET", unsigned = 0, bool = false, unsigned = 0);
 		friend std::ostream& operator << (std::ostream&, const Planet&);
-		void SomeFunk();
+		friend std::istream& operator >> (std::istream&, Planet&);
 		static void ReadDB();
 		static void WriteDB();
 		static void SortDB();
