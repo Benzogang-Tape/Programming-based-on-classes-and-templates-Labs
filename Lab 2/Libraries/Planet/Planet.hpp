@@ -21,15 +21,44 @@ namespace Planet {
 		unsigned _satellitesCount{};
 	public:
 		explicit Planet(const char* = (char*)"DEFAULT_PLANET", unsigned = 0, bool = false, unsigned = 0);
+
+		~Planet();
+
 		friend std::ostream& operator << (std::ostream&, const Planet&);
+
 		friend std::istream& operator >> (std::istream&, Planet&);
-		static void ReadDB();
+
+		static void ReadDB(char *, Planet *);
+
 		static void WriteDB();
+
 		static void SortDB();
+
 		static void AddNewObject();
+
 		static void DeleteObject();
+
 		static void EditDB();
+
 		static void PrintDB();
+
+		[[nodiscard]] size_t GetId() const;
+
+		[[nodiscard]] const char *GetName() const;
+
+		[[nodiscard]] unsigned int GetDiameter() const;
+
+		[[nodiscard]] unsigned int GetSatellitesCount() const;
+
+		[[nodiscard]] bool IsLifeExists() const;
+
+		void SetName(const char* name);
+
+		void SetDiameter(unsigned int diameter);
+
+		void SetLifeExists(bool lifeExists);
+
+		void SetSatellitesCount(unsigned int satellitesCount);
 	};
 
 }

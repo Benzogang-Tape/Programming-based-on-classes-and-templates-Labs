@@ -8,6 +8,7 @@
 #include <Planet.hpp>
 #include <Road.hpp>
 #include <MenuInterface.hpp>
+#include <Database.hpp>
 
 int Interactive();
 int Demo();

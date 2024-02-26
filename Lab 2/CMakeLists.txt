@@ -16,7 +16,8 @@ add_subdirectory(Libraries)
 
 include_directories(Libraries/Planet
                     Libraries/Road
-                    Libraries/MenuInterface)
+                    Libraries/MenuInterface
+                    Libraries/Database)
 
 #include_directories(${PLANET_INCLUDE_DIR})
 #list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
@@ -38,3 +39,4 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE Planet)
 target_link_libraries(${PROJECT_NAME} PRIVATE Road)
 target_link_libraries(${PROJECT_NAME} PRIVATE MenuInterface)
+target_link_libraries(${PROJECT_NAME} PRIVATE Database)

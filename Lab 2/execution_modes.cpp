@@ -5,24 +5,31 @@
 #include "execution_modes.hpp"
 
 int Interactive() {
-	auto database{ std::make_unique<Road::Road[]>(7) };
-	Planet::Planet planet{(char*)"GogoTApe", 1488, true};
+//	auto database{ std::make_unique<Road::Road[]>(7) };
+//	auto database{ std::make_unique<Planet::Planet[]>(7) };
+//	auto *planet = new Planet::Planet{(char*)"GogoTApe", 1488, true};
+//	Database::Database<Planet::Planet> dat;
+//	dat.clear();
+//	dat.pushBack(planet);
+	auto* planets = new Planet::Planet[12];
 	while (true) {
 		switch (MenuInterface::MenuInterface::Menu()) {
 			case 0:
 				std::cout << "Saving changes and exiting..." << std::endl;
 				return 0;
 			case 1:
-				std::cout << planet << std::endl;
+//				std::cout << planet << std::endl;
 				break;
 			case 2:
-				Planet::Planet::ReadDB();
+				Planet::Planet::ReadDB((char *)"PlanetsDB.txt", planets);
 				std::cout << "CASE 2" << std::endl;
 				break;
 			case 3:
+//				std::cout << dat[0];
 				std::cout << "CASE 3" << std::endl;
 				break;
 			case 4:
+				delete[] planets;
 				std::cout << "CASE 4" << std::endl;
 				break;
 			case 5:

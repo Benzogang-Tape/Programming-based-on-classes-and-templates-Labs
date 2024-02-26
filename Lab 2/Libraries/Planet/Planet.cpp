@@ -18,7 +18,14 @@ namespace Planet {
 	}
 
 	std::istream& operator >> (std::istream &in, Planet &planet) {
-		in >> planet._name >> planet._diameter >> planet._lifeExists >> planet._satellitesCount;
+		char name[256]{};
+		unsigned diameter{}, satellitesCount{};
+		bool lifeExists{};
+		in >> name >> diameter >> lifeExists >> satellitesCount;
+		planet.SetName(name);
+		planet.SetDiameter(diameter);
+		planet.SetLifeExists(lifeExists);
+		planet.SetSatellitesCount(satellitesCount);
 		return in;
 	}
 
@@ -33,18 +40,69 @@ Planet::Planet::Planet(const char name[], unsigned diameter, bool lifeExists, un
 	std::cout << "Creating ID " << _id << std::endl;
 }
 
-void Planet::Planet::ReadDB() {
-	std::ifstream database("PlanetsDB.txt");
+void Planet::Planet::ReadDB(char* file, Planet* planets) {
+	std::ifstream database(file);
 	if (!database) {
 		std::cout << "Unable to read file.";
+		return;
 	}
+	size_t counter{};
 	while (database) {
-		Planet pl{};
-		database >> pl;
-		std::cout << pl;
+		auto* planet = new Planet{};
+		database >> *planet;
+		std::cout << *planet;
+		planets[counter] = *planet;
+		counter++;
+		if (database.eof()) {
+			database.close();
+			break;
+		}
 	}
-	database.close();
 }
+
+size_t Planet::Planet::GetId() const {
+	return _id;
+}
+
+const char *Planet::Planet::GetName() const {
+	return _name;
+}
+
+unsigned int Planet::Planet::GetDiameter() const {
+	return _diameter;
+}
+
+bool Planet::Planet::IsLifeExists() const {
+	return _lifeExists;
+}
+
+unsigned int Planet::Planet::GetSatellitesCount() const {
+	return _satellitesCount;
+}
+
+void Planet::Planet::SetName(const char *name) {
+	std::strcpy(_name, name);
+}
+
+void Planet::Planet::SetDiameter(unsigned int diameter) {
+	_diameter = diameter;
+}
+
+void Planet::Planet::SetSatellitesCount(unsigned int satellitesCount) {
+	_satellitesCount = satellitesCount;
+}
+
+void Planet::Planet::SetLifeExists(bool lifeExists) {
+	_lifeExists = lifeExists;
+}
+
+Planet::Planet::~Planet() {
+	currentPlanetCount--;
+	std::cout << "Deleting ID" << _id << std::endl;
+}
+
+
+
 
 
 
