@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 #include_directories(../MenuInterface)
 
+include_directories(../Database)
+
 set(${PROJECT_NAME}_SOURCES
         Planet.cpp)
 
@@ -19,5 +21,7 @@ set(${PROJECT_NAME}_SOURCE_LIST
         ${${PROJECT_NAME}_HEADERS})
 
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_SOURCE_LIST})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Database)
 
 #target_link_libraries(${PROJECT_NAME} PRIVATE MenuInterface)

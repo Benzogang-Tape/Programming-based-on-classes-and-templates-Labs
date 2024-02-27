@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <Database.hpp>
 
 namespace Planet {
 
@@ -24,9 +25,13 @@ namespace Planet {
 
 		~Planet();
 
+		Planet& operator= (const Planet&);
+
 		friend std::ostream& operator << (std::ostream&, const Planet&);
 
 		friend std::istream& operator >> (std::istream&, Planet&);
+
+		static void Read(char *, Database::Database<Planet>& database);
 
 		static void ReadDB(char *, Planet *);
 
@@ -40,7 +45,7 @@ namespace Planet {
 
 		static void EditDB();
 
-		static void PrintDB();
+		static void PrintDB(Database::Database<Planet>& database);
 
 		[[nodiscard]] size_t GetId() const;
 

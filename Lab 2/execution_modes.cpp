@@ -8,10 +8,10 @@ int Interactive() {
 //	auto database{ std::make_unique<Road::Road[]>(7) };
 //	auto database{ std::make_unique<Planet::Planet[]>(7) };
 //	auto *planet = new Planet::Planet{(char*)"GogoTApe", 1488, true};
-//	Database::Database<Planet::Planet> dat;
+	Database::Database<Planet::Planet> dat(10);
 //	dat.clear();
 //	dat.pushBack(planet);
-	auto* planets = new Planet::Planet[12];
+//	auto* planets = new Planet::Planet[12];
 	while (true) {
 		switch (MenuInterface::MenuInterface::Menu()) {
 			case 0:
@@ -21,7 +21,8 @@ int Interactive() {
 //				std::cout << planet << std::endl;
 				break;
 			case 2:
-				Planet::Planet::ReadDB((char *)"PlanetsDB.txt", planets);
+				Planet::Planet::Read((char *)"PlanetsDB.txt", dat);
+//				Planet::Planet::ReadDB((char *)"PlanetsDB.txt", planets);
 				std::cout << "CASE 2" << std::endl;
 				break;
 			case 3:
@@ -29,7 +30,7 @@ int Interactive() {
 				std::cout << "CASE 3" << std::endl;
 				break;
 			case 4:
-				delete[] planets;
+//				delete[] planets;
 				std::cout << "CASE 4" << std::endl;
 				break;
 			case 5:
@@ -39,6 +40,7 @@ int Interactive() {
 				std::cout << "CASE 6" << std::endl;
 				break;
 			case 7:
+				Planet::Planet::PrintDB(dat);
 				std::cout << "CASE 7" << std::endl;
 				break;
 			default:

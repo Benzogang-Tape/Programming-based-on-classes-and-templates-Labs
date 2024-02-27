@@ -60,6 +60,26 @@ void Planet::Planet::ReadDB(char* file, Planet* planets) {
 	}
 }
 
+
+void Planet::Planet::Read(char* file, Database::Database<Planet> &db) {
+	std::ifstream database(file);
+	if (!database) {
+		std::cout << "Unable to read file.";
+		return;
+	}
+	size_t counter{};
+	while (database) {
+		Planet pl{};
+		database >> pl;
+		db[counter] = pl;
+		counter++;
+		if (database.eof()) {
+			database.close();
+			break;
+		}
+	}
+}
+
 size_t Planet::Planet::GetId() const {
 	return _id;
 }
@@ -100,6 +120,25 @@ Planet::Planet::~Planet() {
 	currentPlanetCount--;
 	std::cout << "Deleting ID" << _id << std::endl;
 }
+
+Planet::Planet &Planet::Planet::operator= (const Planet& planet) {
+	if (this == &planet)
+		return *this;
+	strcpy(this->_name, planet._name);
+	this->_diameter = planet._diameter;
+	this->_lifeExists = planet._lifeExists;
+	this->_satellitesCount = planet._satellitesCount;
+
+	return *this;
+}
+
+void Planet::Planet::PrintDB(Database::Database<Planet> &database) {
+	for (size_t i{}; i < database.getSize(); ++i) {
+		std::cout << database[i];
+	}
+}
+
+
 
 
 
