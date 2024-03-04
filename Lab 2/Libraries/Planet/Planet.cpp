@@ -67,17 +67,29 @@ void Planet::Planet::Read(char* file, Database::Database<Planet> &db) {
 		std::cout << "Unable to read file.";
 		return;
 	}
-	size_t counter{};
-	while (database) {
-		Planet pl{};
-		database >> pl;
-		db[counter] = pl;
-		counter++;
-		if (database.eof()) {
-			database.close();
-			break;
-		}
+//	size_t counter{};
+	size_t amountOfRecords{static_cast<size_t>(std::count(std::istreambuf_iterator<char>(database), {}, '\n') + 1)};
+//	std::cout << "AMOUNT OF LINES: " << amountOfRecords << std::endl;
+	if (db.getCapacity() < amountOfRecords) {
+		db.Resize(amountOfRecords);
 	}
+	database.seekg(std::ios::beg);
+	for (size_t i{}; i < amountOfRecords; ++i) {
+		database >> db[i];
+	}
+	database.close();
+//	while (database) {
+//		Planet pl{};
+//		database >> pl;
+////		db.pushBack1(pl);
+//		db[counter] = pl;
+//		counter++;
+//		if (database.eof()) {
+//			database.close();
+//			break;
+//		}
+//	}
+	std::cout << "Data successfully fetched!" << std::endl;
 }
 
 size_t Planet::Planet::GetId() const {
@@ -134,7 +146,13 @@ Planet::Planet &Planet::Planet::operator= (const Planet& planet) {
 
 void Planet::Planet::PrintDB(Database::Database<Planet> &database) {
 	for (size_t i{}; i < database.getSize(); ++i) {
-		std::cout << database[i];
+		if (!strcmp(database[i].GetName(), "DEFAULT_PLANET")) {
+			if (!i) {
+				std::cout << "Current Planet's list is empty.\nYou can refresh it by fetching data from DB" << std::endl;
+			}
+			break;
+		}
+		std::cout << i + 1 << ") " << database[i];
 	}
 }
 

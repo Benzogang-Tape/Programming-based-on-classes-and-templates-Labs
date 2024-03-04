@@ -28,7 +28,6 @@ namespace Database {
 		explicit Database(size_t size) {
 			vec = new T[size];
 			this->capacity = size;
-			this->size = size;
 		}
 
 		~Database() {
@@ -71,6 +70,18 @@ namespace Database {
 			size = 0;
 		}
 
+		Database<T>& Resize(size_t newSize) {
+			T* temp = new T[newSize];
+			for (size_t i{}; i < (newSize > size ? size : newSize); ++i) {
+				temp[i] = vec[i];
+			}
+			delete[] vec;
+			vec = temp;
+			temp = nullptr;
+			capacity *= growthFactor;
+			return *this;
+		}
+
 		Database<T>& pushBack(const T* data) { //TODO: Возможно не нужен const
 			if (size == capacity) {
 				T* temp = new T[capacity * growthFactor];
@@ -87,6 +98,26 @@ namespace Database {
 			size++;
 			return *this;
 		}
+
+
+		Database<T>& pushBack1(const T data) {
+			if (size == capacity) {
+				T* temp = new T[capacity * growthFactor];
+
+				for (size_t i{}; i < size; i++) {
+					temp[i] = vec[i];
+				}
+
+				delete[] vec;
+				capacity *= growthFactor;
+				vec = temp;
+			}
+			vec[size] = data;
+			size++;
+			return *this;
+		}
+
+
 /*
 		Database<T>& pushBack(const Database<T>& v) {
 			if (v.getSize() == 0)

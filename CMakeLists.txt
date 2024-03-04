@@ -4,3 +4,4 @@ project(Labs)
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory("Lab 2")
+add_subdirectory("Lab 3")

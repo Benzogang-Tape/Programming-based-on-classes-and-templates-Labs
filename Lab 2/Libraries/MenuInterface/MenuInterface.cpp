@@ -28,14 +28,15 @@ const void MenuInterface::MenuInterface::PrintOptions(int option) {
 }
 
 int MenuInterface::MenuInterface::Menu() {
-	std::cout <<"\nWhat do you want to do? Choose from the options below:" << std::endl;
+	std::cout <<"\nWhat do you want to do? Choose from the options below:\n" << std::endl;
 	PrintOptions();
 	std::cout << "------------------------------------\n" << options[0];
 	while (true) {
-		std::cout << "Enter your choice: ";
+		std::cout << "\nEnter your choice: ";
 		int chosenOption{};
 		std::cin >> chosenOption;
 		if (0 <= chosenOption and chosenOption <= 7) {
+			std::cout << std::endl;
 			return chosenOption;
 		}
 		std::cout << "\nWrong input. Please read available actions and try again.\n";
