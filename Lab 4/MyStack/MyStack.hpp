@@ -2,8 +2,7 @@
 #define LAB_4_MYSTACK_HPP
 
 #include <iostream>
-#include <cmath>
-using namespace std;
+
 
 template <class INF, class FRIEND>
 class ListNode
@@ -11,7 +10,7 @@ class ListNode
 private:
 	INF d;
 	ListNode *next;
-	ListNode() { next = nullptr; }
+	ListNode() { next = nullptr; d = INF{};}
 	ListNode(ListNode &tmp);
 	friend FRIEND;
 };
@@ -31,7 +30,7 @@ public:
 	bool push(INF n);
 	bool pop();
 	INF top_inf();
-	MyStack<INF>& operator=(MyStack<INF> tmp);
+	MyStack<INF>& operator=(const MyStack<INF>& tmp);
 	void show();
 	void showReverse();
 };
@@ -105,7 +104,10 @@ INF MyStack<INF>::top_inf() {
 	return top->d;
 }
 template <class INF>
-inline MyStack<INF>& MyStack<INF>::operator=(MyStack<INF> tmp) {
+inline MyStack<INF>& MyStack<INF>::operator=(const MyStack<INF>& tmp) {
+	if (&tmp == this) {
+		return *this;
+	}
 	top = nullptr;
 	top = new Node{};
 	top->d = tmp.top->d;
@@ -122,31 +124,32 @@ inline MyStack<INF>& MyStack<INF>::operator=(MyStack<INF> tmp) {
 }
 template <class INF>
 inline void MyStack<INF>::showReverse() {
-	Node *cur{top};
+	const Node* cur{top};
 	bool firstElem{};
 	while (cur != nullptr) {
 		if (firstElem) {
-			cout << "* ";
+			std::cout << "* ";
 		}
-		cout << cur->d << " ";
+		std::cout << cur->d << " ";
 		cur = cur->next;
 		firstElem = true;
 	}
+	std::cout << std::endl;
 }
 template <class INF>
 inline void MyStack<INF>::show() {
-	Node *last{top};
+	const Node *last{top};
 	while (last->next != nullptr) {
 		last = last->next;
 	}
-	cout << last->d;
+	std::cout << last->d;
 	if (last != top) {
 		for (;;) {
 			Node *preLast = top;
 			while (preLast->next != last) {
 				preLast = preLast->next;
 			}
-			cout << " * " << preLast->d;
+			std::cout << " * " << preLast->d;
 			last = preLast;
 
 			if (last == top) {
@@ -154,9 +157,10 @@ inline void MyStack<INF>::show() {
 			}
 		}
 	}
+	std::cout << std::endl;
 }
 
-void Multipliers(int n, MyStack<int> &stack);
+void Multipliers(int num, MyStack<int> &stack);
 
 
 #endif //LAB_4_MYSTACK_HPP

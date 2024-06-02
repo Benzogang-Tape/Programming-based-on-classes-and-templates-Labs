@@ -1,32 +1,32 @@
 #include "MyStack.hpp"
 
-void Multipliers(int n, MyStack<int> &stack)
+void Multipliers(int num, MyStack<int> &stack)
 {
 	while (!stack.empty()) {
 		stack.pop();
 	}
-	int sign = n < 0 ? -1 : 1;
-	n = abs(n);
-	if (n == 0) {
+	int sign = num < 0 ? -1 : 1;
+	num = abs(num);
+	if (num == 0) {
 		stack.push(0);
 	}
-	if (n == 1) {
+	if (num == 1) {
 		stack.push(1 * sign);
 	}
 	int i{2}, count{};
-	while ((n > 2) and (i <= n)) {
-		if (n % i == 0) {
+	while ((num > 2) and (i <= num)) {
+		if (num % i == 0) {
 			if (count == 0) {
 				stack.push(i * sign);
 			} else {
 				stack.push(i);
 			}
 			count++;
-			n /= i;
+			num /= i;
 			i = 1;
 		}
 		i++;
 	}
-	if (n == 2)
+	if (num == 2)
 		stack.push(2);
 }

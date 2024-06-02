@@ -3,8 +3,18 @@
 
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
-//	system("chcp 1251>nul");
+	int num{};
+	std::cin >> num;
+	MyStack<int> stack;
+	Multipliers(num, stack);
+	MyStack<int> stackCopy(stack);
+	stackCopy.show();
+	stack.showReverse();
+	return 0;
+}
+
+
+/*
 	MyStack<char> stack;
 	stack.push('a');
 	stack.push('b');
@@ -18,5 +28,4 @@ int main() {
 	stack3 = stack;
 	stack3.show();
 	cout << endl;
-	return 0;
-}
+ */
