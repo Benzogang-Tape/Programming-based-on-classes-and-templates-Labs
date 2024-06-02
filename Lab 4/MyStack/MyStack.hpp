@@ -26,22 +26,19 @@ class MyStack
 public:
 	MyStack();
 	~MyStack();
-	MyStack(MyStack &tmp);
+	MyStack(const MyStack &tmp);
 	bool empty();
 	bool push(INF n);
 	bool pop();
 	INF top_inf();
-	MyStack<INF> operator=(MyStack<INF> tmp);
+	MyStack<INF>& operator=(MyStack<INF> tmp);
 	void show();
 	void showReverse();
 };
 
 template <class INF>
 bool MyStack<INF>::empty() {
-	if (top == nullptr)
-		return true;
-	else
-		return false;
+	return top == nullptr;
 }
 
 template <class INF>
@@ -55,125 +52,104 @@ MyStack<INF>::~MyStack() {
 }
 
 template <class INF>
-inline MyStack<INF>::MyStack(MyStack &tmp)
-{
+inline MyStack<INF>::MyStack(const MyStack &tmp) {
 	top = nullptr;
 	top = new Node{};
 	top->d = tmp.top->d;
 
-	Node *cur = tmp.top;
-	Node *to_cur = top;
+	Node *cur {tmp.top}, *toCur{top};
 
-	while (cur->next != nullptr)
-	{
-		to_cur->next = new Node{};
-		to_cur->next->d = cur->next->d;
-		to_cur = to_cur->next;
+	while (cur->next != nullptr) {
+		toCur->next = new Node{};
+		toCur->next->d = cur->next->d;
+		toCur = toCur->next;
 		cur = cur->next;
 	}
 }
 
 template <class INF>
-bool MyStack<INF>::push(INF n)
-{
-	if (empty())
-	{
+bool MyStack<INF>::push(INF n) {
+	if (empty()) {
 		top = new Node{};
 		top->d = n;
-		return 0;
+		return false;
 	}
-	Node *cur = top;
-	while (cur->next != nullptr)
-	{
+	Node *cur{top};
+	while (cur->next != nullptr) {
 		cur = cur->next;
 	}
 	cur->next = new Node{};
 	cur->next->d = n;
-	return 1;
+	return true;
 }
 
 template <class INF>
-inline bool MyStack<INF>::pop(void)
-{
-	if (top->next == nullptr)
-	{
-		cout << "\n???????? head, ????????\n";
+bool MyStack<INF>::pop() {
+	if (top->next == nullptr) {
+		delete top;
 		top = nullptr;
-		return 0;
+		return false;
 	}
 
-	Node *cur = top;
-	while (cur->next->next != nullptr)
-	{
+	Node *cur{top};
+	while (cur->next->next != nullptr) {
 		cur = cur->next;
 	}
-	cur->next = nullptr;
 	delete cur->next;
-	return 1;
+	cur->next = nullptr;
+	return true;
 }
 
 template <class INF>
-INF MyStack<INF>::top_inf(void)
-{
+INF MyStack<INF>::top_inf() {
 	return top->d;
 }
 template <class INF>
-inline MyStack<INF> MyStack<INF>::operator=(MyStack<INF> tmp)
-{
-
+inline MyStack<INF>& MyStack<INF>::operator=(MyStack<INF> tmp) {
 	top = nullptr;
 	top = new Node{};
 	top->d = tmp.top->d;
 
-	Node *cur = tmp.top;
-	Node *to_cur = top;
+	Node *cur {tmp.top}, *toCur{top};
 
-	while (cur->next != nullptr)
-	{
-		to_cur->next = new Node{};
-		to_cur->next->d = cur->next->d;
-		to_cur = to_cur->next;
+	while (cur->next != nullptr) {
+		toCur->next = new Node{};
+		toCur->next->d = cur->next->d;
+		toCur = toCur->next;
 		cur = cur->next;
 	}
 	return *this;
 }
 template <class INF>
-inline void MyStack<INF>::showReverse(void)
-{
-	Node *cur = top;
-	int i = 0;
-	while (cur != nullptr)
-	{
-		if (i)
+inline void MyStack<INF>::showReverse() {
+	Node *cur{top};
+	bool firstElem{};
+	while (cur != nullptr) {
+		if (firstElem) {
 			cout << "* ";
+		}
 		cout << cur->d << " ";
 		cur = cur->next;
-		i++;
+		firstElem = true;
 	}
 }
 template <class INF>
-inline void MyStack<INF>::show(void)
-{
-	Node *last = top;
-	while (last->next != nullptr)
-	{
+inline void MyStack<INF>::show() {
+	Node *last{top};
+	while (last->next != nullptr) {
 		last = last->next;
 	}
 	cout << last->d;
-	if (last != top)
-	{
-		while (true)
-		{
-			Node *beforeLast = top;
-			while (beforeLast->next != last)
-			{
-				beforeLast = beforeLast->next;
+	if (last != top) {
+		for (;;) {
+			Node *preLast = top;
+			while (preLast->next != last) {
+				preLast = preLast->next;
 			}
-			cout << " * " << beforeLast->d;
-			last = beforeLast;
+			cout << " * " << preLast->d;
+			last = preLast;
 
-			if (last == top)
-			{
+			if (last == top) {
 				break;
 			}
 		}
