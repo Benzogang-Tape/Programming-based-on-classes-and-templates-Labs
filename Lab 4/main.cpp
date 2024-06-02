@@ -29,3 +29,15 @@ int main() {
 	stack3.show();
 	cout << endl;
  */
+
+
+
+/*
+ * 				----------------reverse order--------------->
+ *
+ * stack bottom -->| data |    | data |     | data |    | data |<-- stack top
+ * 				   |______|    |______|     |______|    |______|
+ * 				   | top  |--> | next |-->  | next |--> | tail |-->nullptr
+ *
+ * 				<---------------direct order-----------------
+ */
