@@ -15,7 +15,7 @@ public:
 	void addEdition(PrintEdition*);
 	//void deleteDocument();
 	virtual ~PrintEdition();
-	virtual void print() const;
+	virtual void print() const = 0;
 	static void printArray();
 };
 
