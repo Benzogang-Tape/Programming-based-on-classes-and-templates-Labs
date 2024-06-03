@@ -6,32 +6,35 @@ int main() {
 	setlocale(LC_ALL, "russian");
 	MyVector<int> testVec;
 	MySet<int> testSet;
-	testVec.addElement(2);
-	testVec.addElement(2);
-	testVec.deleteElement(10);
-	testSet.addElement(2);
-	testSet.addElement(2);
-	testSet.delete_Element(2);
+	MySet<int> testSet1, testSet2;
+	testSet1.addElement(1);
+	testSet1.addElement(2);
+	testSet1.addElement(3);
+	testSet2.addElement(4);
+	testSet2.addElement(5);
+	testSet2.addElement(6);
+
+	testSet = testSet1 + testSet2;
+	std::cout << testSet << std::endl;
+
+	testVec.addElement(54);
+	testVec.addElement(54);
+	testVec.deleteElement(14);
+	testSet.addElement(54);
+	testSet.addElement(54);
+	testSet.delete_Element(54);
 	std::cout << testVec << ' ' << testSet << std::endl;
 
 	MySet<int> t1, t2, result;
-	t1.addElement(7);
+	t1.addElement(12);
 	t1.addElement(123);
 	t1.addElement(23);
 	t1.addElement(73);
 
-	t2.addElement(7);
+	t2.addElement(12);
 	t2.addElement(27);
-	t2.addElement(2545);
+	t2.addElement(1337);
 	t2.addElement(73);
-	//std::cout << "array 1:" << t1 << ", array 2:" << t2 << std::endl << std::endl;
-	//std::cout << t1 << " + " << t2 << " => " << t1 + t2 << std::endl;
-	//std::cout << t1 << " - " << t2 << " => " << t1 - t2 << std::endl;
-	//std::cout << t2 << " - " << t1 << " => " << t2 - t1 << std::endl;
-	//std::cout << t1 << " * " << t2 << " => " << t1 * t2 << std::endl;
-	//std::cout << t1 << " == " << t2 << " => ";
-	bool a = (t1 == t2);
-	//std::cout << a;
 
 	MyVector<char*> v;
 	v.addElement(const_cast<char *>("Привет!"));

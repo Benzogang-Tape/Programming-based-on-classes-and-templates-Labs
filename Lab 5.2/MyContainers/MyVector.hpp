@@ -38,15 +38,23 @@ public:
 
 template<class INF>
 inline void MyVector<INF>::resize() {
-	if (currentSize > maxSize)
+	bool flag{};
+	if (currentSize > maxSize) {
 		maxSize *= 2;
-	else if (maxSize / 4 > currentSize)
+		flag = true;
+	}
+	else if (maxSize / 4 > currentSize) {
 		maxSize /= 2;
-	auto temp = new INF[maxSize];
-	for (int i{}; i < currentSize - 1; ++i)
-		temp[i] = this->inf[i];
-	delete[] inf;
-	inf = temp;
+		flag = true;
+	}
+	if (!flag) {
+		auto temp = new INF[maxSize];
+		for (int i{}; i < currentSize - 1; ++i)
+			temp[i] = this->inf[i];
+		delete[] inf;
+		inf = temp;
+	}
+
 }
 
 template<class INF>
@@ -86,6 +94,17 @@ inline void MyVector<INF>::sort() {
 	for (int i{}; i < currentSize - 1; ++i) {
 		for (int j = i + 1; j < currentSize; ++j) {
 			if (inf[i] > inf[j]) {
+				std::swap(inf[i], inf[j]);
+			}
+		}
+	}
+}
+
+template<>
+inline void MyVector<char *>::sort() {
+	for (int i{}; i < currentSize -1; i++) {
+		for (int j = i + 1; j < currentSize; ++j) {
+			if (strcmp(inf[i], inf[j]) > 0) {
 				std::swap(inf[i], inf[j]);
 			}
 		}
