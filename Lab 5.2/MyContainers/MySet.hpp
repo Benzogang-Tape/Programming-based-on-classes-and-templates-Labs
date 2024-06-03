@@ -1,17 +1,12 @@
-//
-// Created by DJ Tape on 03.06.2024.
-//
-
 #ifndef LAB_5_2_MYSET_HPP
 #define LAB_5_2_MYSET_HPP
 
 #include "MyVector.hpp"
 
 template <class Information>
-class MySet: public MyVector<Information>
-{
+class MySet: public MyVector<Information> {
 public:
-	MySet(Information inf = NULL) : MyVector<Information>(){};
+	explicit MySet(Information inf = NULL) : MyVector<Information>(){};
 	bool operator == (MySet&);
 	MySet& operator += (MySet&);
 	MySet& operator -= (MySet&);
@@ -29,82 +24,84 @@ public:
 };
 
 template<class Information>
-inline bool MySet<Information>::operator==(MySet& other)
-{
-	if (this->currentSize != other.currentSize)
+inline bool MySet<Information>::operator==(MySet& other) {
+	if (this->currentSize != other.currentSize) {
 		return false;
-	for (int i = 0; i < this->currentSize - 1; i++)
-		if (this->find(other.inf[i]) == -1)
+	}
+	for (int i{}; i < this->currentSize - 1; ++i) {
+		if (this->find(other.inf[i]) == -1) {
 			return false;
+		}
+	}
 	return true;
 }
 
 template<class U>
-inline MySet<U> operator+(MySet<U>& lhs, MySet<U>& rhs)
-{
+inline MySet<U> operator+(MySet<U>& lhs, MySet<U>& rhs) {
 	MySet<U> result;
-	for (int i = 0; i < lhs.currentSize; i++)
+	for (int i{}; i < lhs.currentSize; ++i) {
 		result.addElement(lhs.inf[i]);
-	for (int j = 0; j < rhs.currentSize; j++)
-		if (result.find(rhs.inf[j]) == -1)
+	}
+	for (int j{}; j < rhs.currentSize; ++j) {
+		if (result.find(rhs.inf[j]) == -1) {
 			result.addElement(rhs.inf[j]);
+		}
+	}
 	return result;
 }
 
 template<class Information>
-inline MySet<Information>& MySet<Information>::operator+=(MySet<Information>& source)
-{
+inline MySet<Information>& MySet<Information>::operator+=(MySet<Information>& source) {
 	*this = *this + source;
 	return *this;
 }
 
 template<class U>
-inline MySet<U> operator-( MySet<U>& lhs, const MySet<U>& rhs)
-{
+inline MySet<U> operator-(MySet<U>& lhs, const MySet<U>& rhs) {
 	MySet<U> result = lhs;
-	for (int i = 0; i < rhs.currentSize; i++)
-		if (result.isElement(rhs.inf[i]))
+	for (int i{}; i < rhs.currentSize; ++i) {
+		if (result.isElement(rhs.inf[i])) {
 			result.deleteElement(result.find(rhs.inf[i]) - 1);
+		}
+	}
 	return result;
 }
 
 template<class Information>
-inline MySet<Information>& MySet<Information>::operator-=(MySet<Information>& source)
-{
+inline MySet<Information>& MySet<Information>::operator-=(MySet<Information>& source) {
 	*this = *this - source;
 	return *this;
 }
 
 template<class U>
-inline MySet<U> operator*(MySet<U>& lhs, MySet<U>& rhs)
-{
+inline MySet<U> operator*(MySet<U>& lhs, MySet<U>& rhs) {
 	MySet<U> result;
-	for (int i = 0; i < lhs.currentSize; i++)
-		if (lhs.find(lhs.inf[i]) != -1 && rhs.find(lhs.inf[i]) != -1)
+	for (int i{}; i < lhs.currentSize; ++i) {
+		if (lhs.find(lhs.inf[i]) != -1 && rhs.find(lhs.inf[i]) != -1) {
 			result.addElement(lhs.inf[i]);
+		}
+	}
 	return result;
 }
 
 template<class Information>
-inline MySet<Information>& MySet<Information>::operator*=(MySet<Information>& source)
-{
+inline MySet<Information>& MySet<Information>::operator*=(MySet<Information>& source) {
 	*this = *this * source;
 	return *this;
 }
 
 template<class Information>
-inline void MySet<Information>::addElement(Information el)
-{
-	if (!this->isElement(el)) {
-		MyVector<Information>::addElement(el);
+inline void MySet<Information>::addElement(Information elem) {
+	if (!this->isElement(elem)) {
+		MyVector<Information>::addElement(elem);
 	}
 }
 
 template<class Information>
-inline void MySet<Information>::delete_Element(Information el)
-{
-	if (this->isElement(el))
-		MyVector<Information>::deleteElement(this->find(el));
+inline void MySet<Information>::delete_Element(Information elem) {
+	if (this->isElement(elem)) {
+		MyVector<Information>::deleteElement(this->find(elem));
+	}
 }
 
 #endif //LAB_5_2_MYSET_HPP

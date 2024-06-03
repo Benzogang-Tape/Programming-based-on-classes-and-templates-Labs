@@ -3,16 +3,16 @@
 
 
 int main() {
-	setlocale(LC_ALL, "RUSSIAN");
-	MyVector<int> ab;
-	MySet<int> ba;
-	ab.addElement(2);
-	ab.addElement(2);
-	ab.deleteElement(10);
-	ba.addElement(2);
-	ba.addElement(2);
-	ba.delete_Element(2);
-	std::cout << ab << ' ' << ba << std::endl;
+	setlocale(LC_ALL, "russian");
+	MyVector<int> testVec;
+	MySet<int> testSet;
+	testVec.addElement(2);
+	testVec.addElement(2);
+	testVec.deleteElement(10);
+	testSet.addElement(2);
+	testSet.addElement(2);
+	testSet.delete_Element(2);
+	std::cout << testVec << ' ' << testSet << std::endl;
 
 	MySet<int> t1, t2, result;
 	t1.addElement(7);
