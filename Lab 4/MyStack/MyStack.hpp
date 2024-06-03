@@ -29,11 +29,19 @@ public:
 	bool empty();
 	bool push(INF n);
 	bool pop();
+	void clear();
 	INF top_inf();
 	MyStack<INF>& operator=(const MyStack<INF>& tmp);
 	void show();
 	void showReverse();
 };
+
+template<class INF>
+void MyStack<INF>::clear() {
+	while (!this->empty()) {
+		this->pop();
+	}
+}
 
 template <class INF>
 bool MyStack<INF>::empty() {
@@ -47,7 +55,7 @@ MyStack<INF>::MyStack() {
 
 template <class INF>
 MyStack<INF>::~MyStack() {
-	delete[] top;
+	this->clear();
 }
 
 template <class INF>
@@ -108,6 +116,7 @@ inline MyStack<INF>& MyStack<INF>::operator=(const MyStack<INF>& tmp) {
 	if (&tmp == this) {
 		return *this;
 	}
+	this->clear();
 	top = nullptr;
 	top = new Node{};
 	top->d = tmp.top->d;

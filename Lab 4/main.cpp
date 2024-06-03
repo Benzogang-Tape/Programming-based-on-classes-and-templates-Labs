@@ -10,26 +10,21 @@ int main() {
 	MyStack<int> stackCopy(stack);
 	stackCopy.show();
 	stack.showReverse();
+
+	std::cout << std::endl;
+
+	MyStack<char> stack1;
+	stack1.push('a');
+	stack1.push('b');
+	stack1.push('c');
+	stack1.show();
+	MyStack<char> stack2(stack1);
+	stack2.show();
+	MyStack<char> stack3;
+	stack3 = stack2;
+	stack3.show();
 	return 0;
 }
-
-
-/*
-	MyStack<char> stack;
-	stack.push('a');
-	stack.push('b');
-	stack.push('c');
-	MyStack<char> stack2(stack);
-	stack.show();
-	cout << endl;
-	stack2.show();
-	cout << endl;
-	MyStack<char> stack3;
-	stack3 = stack;
-	stack3.show();
-	cout << endl;
- */
-
 
 
 /*
