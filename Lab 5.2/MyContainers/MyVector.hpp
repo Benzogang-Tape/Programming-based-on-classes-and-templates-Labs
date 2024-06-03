@@ -38,22 +38,22 @@ public:
 
 template<class INF>
 inline void MyVector<INF>::resize() {
-	bool flag{};
+//	bool flag{};
 	if (currentSize > maxSize) {
 		maxSize *= 2;
-		flag = true;
+//		flag = true;
 	}
 	else if (maxSize / 4 > currentSize) {
 		maxSize /= 2;
-		flag = true;
+//		flag = true;
 	}
-	if (!flag) {
-		auto temp = new INF[maxSize];
-		for (int i{}; i < currentSize - 1; ++i)
-			temp[i] = this->inf[i];
-		delete[] inf;
-		inf = temp;
-	}
+//	if (!flag) {
+	auto temp = new INF[maxSize];
+	for (int i{}; i < currentSize - 1; ++i)
+		temp[i] = this->inf[i];
+	delete[] inf;
+	inf = temp;
+//	}
 
 }
 
