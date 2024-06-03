@@ -8,13 +8,13 @@
 
 const int MAX_SIZE = 5;
 
-template <class Information>
+template <class INF>
 
 class MyVector
 {
-	typedef class MyVector<Information> Vector;
+	typedef class MyVector<INF> Vector;
 protected:
-	Information *inf;
+	INF *inf;
 	int maxSize;
 	int currentSize;
 	void resize();
@@ -23,51 +23,51 @@ public:
 	MyVector(const MyVector&);
 	~MyVector() { delete[] inf; }
 
-	virtual void addElement(Information);
+	virtual void addElement(INF);
 	void deleteElement(int);
-	Information& operator [] (int);
+	INF& operator [] (int);
 	void sort();
-	bool isElement(Information);
+	bool isElement(INF);
 	int getSize() { return currentSize; }
 	int getMaxSize() { return maxSize; }
-	int find(Information);
-	MyVector<Information>& operator = (const MyVector<Information>&);
+	int find(INF);
+	MyVector<INF>& operator = (const MyVector<INF>&);
 	template<class U>
 	friend std::ostream& operator <<(std::ostream&, const MyVector<U>&);
 };
 
-template<class Information>
-inline void MyVector<Information>::resize() {
+template<class INF>
+inline void MyVector<INF>::resize() {
 	if (currentSize > maxSize)
 		maxSize *= 2;
 	else if (maxSize / 4 > currentSize)
 		maxSize /= 2;
-	auto temp = new Information[maxSize];
+	auto temp = new INF[maxSize];
 	for (int i{}; i < currentSize - 1; ++i)
 		temp[i] = this->inf[i];
 	delete[] inf;
 	inf = temp;
 }
 
-template<class Information>
-inline MyVector<Information>::MyVector(const MyVector& other) {
+template<class INF>
+inline MyVector<INF>::MyVector(const MyVector& other) {
 	maxSize = MAX_SIZE;
 	currentSize = other.currentSize;
-	inf = new Information[currentSize];
+	inf = new INF[currentSize];
 	for (int i{}; i < other.currentSize; ++i) {
 		inf[i] = other.inf[i];
 	}
 }
 
-template<class Information>
-inline void MyVector<Information>::addElement(Information elem) {
+template<class INF>
+inline void MyVector<INF>::addElement(INF elem) {
 	currentSize += 1;
 	resize();
 	inf[currentSize - 1] = elem;
 }
 
-template<class Information>
-inline void MyVector<Information>::deleteElement(int idx) {
+template<class INF>
+inline void MyVector<INF>::deleteElement(int idx) {
 	if (idx < 0 or idx > currentSize)
 		return;
 	for (int i = idx; i < currentSize - 1; ++i)
@@ -76,13 +76,13 @@ inline void MyVector<Information>::deleteElement(int idx) {
 	currentSize--;
 }
 
-template<class Information>
-inline Information& MyVector<Information>::operator[](int idx) {
+template<class INF>
+inline INF& MyVector<INF>::operator[](int idx) {
 	return *(inf + idx);
 }
 
-template<class Information>
-inline void MyVector<Information>::sort() {
+template<class INF>
+inline void MyVector<INF>::sort() {
 	for (int i{}; i < currentSize - 1; ++i) {
 		for (int j = i + 1; j < currentSize; ++j) {
 			if (inf[i] > inf[j]) {
@@ -92,8 +92,8 @@ inline void MyVector<Information>::sort() {
 	}
 }
 
-template<class Information>
-inline int MyVector<Information>::find(Information elem) {
+template<class INF>
+inline int MyVector<INF>::find(INF elem) {
 	for (int i{}; i < currentSize; ++i)
 		if (inf[i] == elem)
 			return i + 1;
@@ -110,12 +110,12 @@ inline int MyVector<char*>::find(char* elem) {
 	return -1;
 }
 
-template<class Information>
-inline MyVector<Information>& MyVector<Information>::operator=(const MyVector<Information>& source) {
+template<class INF>
+inline MyVector<INF>& MyVector<INF>::operator=(const MyVector<INF>& source) {
 	if (this != &source) {
 		this->currentSize = 0;
 		delete[] inf;
-		inf = new Information[currentSize];
+		inf = new INF[currentSize];
 		for (int i{}; i < source.currentSize; ++i) {
 			this->addElement(source.inf[i]);
 		}
@@ -138,8 +138,8 @@ inline std::ostream& operator<<(std::ostream& out, const MyVector<U>& elem) {
 	return out;
 }
 
-template<class Information>
-inline bool MyVector<Information>::isElement(Information elem) {
+template<class INF>
+inline bool MyVector<INF>::isElement(INF elem) {
 	if (this->find(elem) != -1)
 		return true;
 	return false;

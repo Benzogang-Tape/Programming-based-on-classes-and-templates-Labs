@@ -3,17 +3,17 @@
 
 #include "MyVector.hpp"
 
-template <class Information>
-class MySet: public MyVector<Information> {
+template <class INF>
+class MySet: public MyVector<INF> {
 public:
-	explicit MySet(Information inf = NULL) : MyVector<Information>(){};
+	explicit MySet(INF inf = NULL) : MyVector<INF>(){};
 	bool operator == (MySet&);
 	MySet& operator += (MySet&);
 	MySet& operator -= (MySet&);
 	MySet& operator *= (MySet&);
 
-	void addElement(Information);
-	void delete_Element(Information);
+	void addElement(INF);
+	void delete_Element(INF);
 
 	template <class U>
 	friend MySet<U> operator+(MySet<U>&, MySet<U>&);
@@ -23,8 +23,8 @@ public:
 	friend MySet<U> operator*(MySet<U>&, MySet<U>&);
 };
 
-template<class Information>
-inline bool MySet<Information>::operator==(MySet& other) {
+template<class INF>
+inline bool MySet<INF>::operator==(MySet& other) {
 	if (this->currentSize != other.currentSize) {
 		return false;
 	}
@@ -50,8 +50,8 @@ inline MySet<U> operator+(MySet<U>& lhs, MySet<U>& rhs) {
 	return result;
 }
 
-template<class Information>
-inline MySet<Information>& MySet<Information>::operator+=(MySet<Information>& source) {
+template<class INF>
+inline MySet<INF>& MySet<INF>::operator+=(MySet<INF>& source) {
 	*this = *this + source;
 	return *this;
 }
@@ -67,8 +67,8 @@ inline MySet<U> operator-(MySet<U>& lhs, const MySet<U>& rhs) {
 	return result;
 }
 
-template<class Information>
-inline MySet<Information>& MySet<Information>::operator-=(MySet<Information>& source) {
+template<class INF>
+inline MySet<INF>& MySet<INF>::operator-=(MySet<INF>& source) {
 	*this = *this - source;
 	return *this;
 }
@@ -84,23 +84,23 @@ inline MySet<U> operator*(MySet<U>& lhs, MySet<U>& rhs) {
 	return result;
 }
 
-template<class Information>
-inline MySet<Information>& MySet<Information>::operator*=(MySet<Information>& source) {
+template<class INF>
+inline MySet<INF>& MySet<INF>::operator*=(MySet<INF>& source) {
 	*this = *this * source;
 	return *this;
 }
 
-template<class Information>
-inline void MySet<Information>::addElement(Information elem) {
+template<class INF>
+inline void MySet<INF>::addElement(INF elem) {
 	if (!this->isElement(elem)) {
-		MyVector<Information>::addElement(elem);
+		MyVector<INF>::addElement(elem);
 	}
 }
 
-template<class Information>
-inline void MySet<Information>::delete_Element(Information elem) {
+template<class INF>
+inline void MySet<INF>::delete_Element(INF elem) {
 	if (this->isElement(elem)) {
-		MyVector<Information>::deleteElement(this->find(elem));
+		MyVector<INF>::deleteElement(this->find(elem));
 	}
 }
 
