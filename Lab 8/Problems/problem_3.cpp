@@ -37,4 +37,5 @@ int main() {
 	outputFile.close();
 
 	std::cout << "Done" << std::endl;
+	return 0;
 }
