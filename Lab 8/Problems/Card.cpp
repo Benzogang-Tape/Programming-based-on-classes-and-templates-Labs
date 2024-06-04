@@ -19,3 +19,14 @@ void Card::print() const {
 std::string Card::getAuthor() const {
 	return author;
 }
+
+/*
+std::ofstream &operator<<(std::ofstream &out, const Card& card) {
+	out << const_cast<char *>("Название: ") << card.title << std::endl;
+	out << "Автор: " << card.author << std::endl;
+	out << "Количество экземпляров: " << card.number << std::endl;
+	out << "--------------------------" << std::endl;
+	return out;
+}
+*/
+

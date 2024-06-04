@@ -13,6 +13,7 @@ public:
 	Card();
 	Card(std::string, std::string, int);
 	void print() const;
+//	friend std::ofstream &operator<<(std::ofstream& out, const Card& card);
 	[[nodiscard]] std::string getAuthor() const ;
 };
 
