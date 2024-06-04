@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>
-#include "planet.hpp"
+#include "Planet.hpp"
 
 
 void PrintPlanets(const std::vector<Planet> &planets) {
