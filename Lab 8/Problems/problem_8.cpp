@@ -9,6 +9,10 @@ void PrintMap(const std::map<int, double> &map) {
 	std::cout << std::endl;
 }
 
+/**
+	Создайте отображение map<int, double> и занесите в него пары 1 - 1.1, 2 - 2.2, 3 - 3.3, 4 - 4.4, 5 - 5.5, ..., 9 - 9.9.
+	Выведите содержимое отображения на экран. Удалить пары с четными ключами и снова распечатайте отображение.
+*/
 void DeleteEven(std::map<int, double> &map) {
 	for (auto& [key, value] : map) {
 		if (!(key % 2)) {
