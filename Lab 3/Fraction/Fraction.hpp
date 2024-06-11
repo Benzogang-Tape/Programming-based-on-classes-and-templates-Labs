@@ -22,18 +22,16 @@ public:
 
 	friend std::ostream& operator << (std::ostream&, const Fraction&);
 	friend std::istream& operator >> (std::istream&, Fraction&);
-//	friend Fraction operator + (Fraction&, Fraction&);
-	Fraction operator + (Fraction&);
+	friend Fraction operator + (Fraction&, Fraction&);
+//	Fraction operator + (Fraction&);
 	friend Fraction operator + (Fraction&, int);
 	friend Fraction operator + (int, Fraction&);
 	friend Fraction operator += (Fraction&, Fraction&);
 	friend Fraction operator += (Fraction&, int);
-
 	friend Fraction operator + (Fraction&, double);
 	friend Fraction operator + (double, Fraction&);
 	friend Fraction operator += (Fraction&, double);
 	void toIrreducible();
-
 	int getDenominator();
 };
 
@@ -43,4 +41,3 @@ int NOK(int, int);
 
 
 #endif //LAB_3_FRACTION_HPP
-

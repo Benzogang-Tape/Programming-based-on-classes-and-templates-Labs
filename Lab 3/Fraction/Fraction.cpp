@@ -1,18 +1,15 @@
 #include "Fraction.hpp"
 
-Fraction::Fraction()
-{
+Fraction::Fraction() {
 	numerator = 0;
 	denominator = 1;
 }
 
-Fraction::Fraction(int _numerator, int _denominator) : numerator(_numerator), denominator(_denominator)
-{
+Fraction::Fraction(int _numerator, int _denominator) : numerator(_numerator), denominator(_denominator) {
 	toIrreducible();
 }
 
-Fraction::Fraction(double num)
-{
+Fraction::Fraction(double num) {
 	denominator = 1;
 	int temp = countDigits(num);
 	numerator = num * pow(10, temp);
@@ -20,8 +17,7 @@ Fraction::Fraction(double num)
 	toIrreducible();
 }
 
-Fraction::Fraction(char* num)
-{
+Fraction::Fraction(char* num) {
 	int fullPart;
 	char* pEnd, *pch, *temp;
 	pch = std::strchr(num, '/');
@@ -48,8 +44,7 @@ Fraction::Fraction(char* num)
 	toIrreducible();
 }
 
-void Fraction::toIrreducible()
-{
+void Fraction::toIrreducible() {
 	if (this->denominator != 0 and this->numerator != 0) {
 		int nod = NOD(abs(this->numerator), abs(this->denominator));
 		this->numerator /= nod;
@@ -63,8 +58,7 @@ int Fraction::getDenominator()
 	return this->denominator;
 }
 
-std::ostream& operator<<(std::ostream& out, const Fraction& fraction)
-{
+std::ostream& operator<<(std::ostream& out, const Fraction& fraction) {
 	if (fraction.denominator == 1 && fraction.numerator != 0)
 		out << fraction.numerator;
 	else if (fraction.numerator == 0)
@@ -80,84 +74,74 @@ std::ostream& operator<<(std::ostream& out, const Fraction& fraction)
 	return out;
 }
 
-std::istream& operator>>(std::istream& in, Fraction& fraction)
-{
+std::istream& operator>>(std::istream& in, Fraction& fraction) {
 	char* line = new char[60];
 	std::cin.getline(line, 60, '\n');
 	fraction = Fraction(line);
 	return in;
 }
 
-//Fraction operator+(Fraction& lhs, Fraction& rhs)
-//{
-//	rhs.toIrreducible();
-//	lhs.toIrreducible();
-//	int nok = NOK(lhs.denominator, rhs.denominator);
-//	Fraction result((nok / lhs.denominator) * lhs.numerator + (nok / rhs.denominator) * rhs.numerator, nok);
-//	result.toIrreducible();
-//	return result;
-//}
-
-Fraction Fraction::operator+(Fraction &rhs) {
-	int nok = NOK(denominator, rhs.denominator);
-	Fraction result((nok / denominator) * numerator + (nok / rhs.denominator) * rhs.numerator, nok);
+Fraction operator+(Fraction& lhs, Fraction& rhs) {
+	rhs.toIrreducible();
+	lhs.toIrreducible();
+	int nok = NOK(lhs.denominator, rhs.denominator);
+	Fraction result((nok / lhs.denominator) * lhs.numerator + (nok / rhs.denominator) * rhs.numerator, nok);
 	result.toIrreducible();
 	return result;
 }
 
-Fraction operator+(Fraction& lhs,const int rhs)
-{
+//Fraction Fraction::operator+(Fraction &rhs) {
+//	int nok = NOK(denominator, rhs.denominator);
+//	Fraction result((nok / denominator) * numerator + (nok / rhs.denominator) * rhs.numerator, nok);
+//	result.toIrreducible();
+//	return result;
+//}
+
+Fraction operator+(Fraction& lhs, const int rhs) {
 	Fraction result(lhs.numerator + rhs * lhs.denominator, lhs.denominator);
 	result.toIrreducible();
 	return result;
 }
 
-Fraction operator+(const int lhs, Fraction& rhs)
-{
+Fraction operator+(const int lhs, Fraction& rhs) {
 	Fraction result(rhs.numerator + lhs * rhs.denominator, rhs.denominator);
 	result.toIrreducible();
 	return result;
 }
 
-Fraction operator+=(Fraction& lhs, Fraction& rhs)
-{
+Fraction operator+=(Fraction& lhs, Fraction& rhs) {
 	lhs = rhs + lhs;
 	lhs.toIrreducible();
 	return lhs;
 }
 
-Fraction operator+=(Fraction& lhs, const int rhs)
-{
+Fraction operator+=(Fraction& lhs, const int rhs) {
 	lhs.numerator += rhs * lhs.denominator;
 	lhs.toIrreducible();
 	return lhs;
 }
 
-Fraction operator+(Fraction& lhs, const double rhs)
-{
+Fraction operator+(Fraction& lhs, const double rhs) {
 	Fraction result(rhs);
 	result += lhs;
 	result.toIrreducible();
 	return result;
 }
 
-Fraction operator+(const double lhs, Fraction& rhs)
-{
+Fraction operator+(const double lhs, Fraction& rhs) {
 	Fraction result(lhs);
 	result += rhs;
 	result.toIrreducible();
 	return result;
 }
 
-Fraction operator+=(Fraction& lhs, const double rhs)
-{
+Fraction operator+=(Fraction& lhs, const double rhs) {
 	lhs = lhs + rhs;
 	lhs.toIrreducible();
 	return lhs;
 }
 
-int countDigits(double num)
-{
+int countDigits(double num) {
 	int count = 0;
 	while (num != int(num)) {
 		num *= 10;
@@ -177,7 +161,6 @@ int NOD(int a, int b) {
 	return b;
 }
 
-int NOK(int a, int b)
-{
+int NOK(int a, int b) {
 	return a * b / NOD(a, b);
 }
