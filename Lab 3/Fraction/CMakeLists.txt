@@ -1,25 +1,21 @@
 cmake_minimum_required(VERSION 3.26)
 
-set(PROJECT_NAME Lab_3)
+set(PROJECT_NAME Fraction)
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 20)
 
 set(${PROJECT_NAME}_HEADERS
-
+        Fraction.hpp
 )
 
 set(${PROJECT_NAME}_SOURCES
-        main.cpp
+        Fraction.cpp
 )
-
-add_subdirectory(Fraction)
 
 set(${PROJECT_NAME}_SOURCE_LIST
         ${${PROJECT_NAME}_SOURCES}
         ${${PROJECT_NAME}_HEADERS}
 )
 
-add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SOURCE_LIST})
-
-target_link_libraries(${PROJECT_NAME} Fraction)
+add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_SOURCE_LIST})
