@@ -31,7 +31,13 @@ int main() {
 	cards.emplace_back("Повести Белкина", "Пушкин", 5);
 	PrintCards(cards);
 	std::string authorToFind{};
-	std::cout << "\nВведите автора для поиска: ";
-	std::cin >> authorToFind;
-	PrintCardsByAuthor(cards, authorToFind);
+	for(;;) {
+		std::cout << "\nВведите автора для поиска: ";
+		std::cin >> authorToFind;
+		if (authorToFind == "exit") {
+			break;
+		}
+		PrintCardsByAuthor(cards, authorToFind);
+	}
+
 }
