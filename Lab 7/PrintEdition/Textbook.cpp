@@ -14,7 +14,7 @@ Textbook::Textbook(const char *_title, const char *_author, int _publicationYear
 			publicationYear(_publicationYear){}
 
 void Textbook::print() const {
-	std::cout << "Книга: " << this->title
+	std::cout << "Учебник: " << this->title
 			  << " Автор: " << this->author
 			  << " Год издания: " << this->publicationYear
 			  << std::endl;
