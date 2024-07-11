@@ -14,6 +14,7 @@ set(${PROJECT_NAME}_SOURCES
 
 
 add_subdirectory(Planet)
+add_subdirectory(Product)
 
 set(${PROJECT_NAME}_SOURCE_LIST
         ${${PROJECT_NAME}_SOURCES})
@@ -24,4 +25,6 @@ add_executable(${PROJECT_NAME}
 target_sources (${PROJECT_NAME} PRIVATE
         Planet/Planet.hpp
         Planet/Planet.cpp
+        Product/Product.hpp
+        Product/Product.cpp
 )

@@ -1,0 +1,6 @@
+5
+John 2 3000 2
+Frank 3 7200 1
+Anthony 8 13500 0
+Michael 4 4300 5
+Leo 2 1200 2
