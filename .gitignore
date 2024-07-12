@@ -296,4 +296,5 @@ Static_Library
 statlib
 Lab*/cmake-build-debug
 Lab*/.idea
+Lab*/Lab*/.idea
 Lab*/Stash/Lab*/.idea
