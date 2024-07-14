@@ -287,14 +287,11 @@ fabric.properties
 .idea/*.name
 .idea/*.iml
 
-Demonstration_Lab_1
-demostatlib
-Lab 1
-/Libraries
-mylib
-Static_Library
-statlib
+########################################################################################################################
+
 Lab*/cmake-build-debug
 Lab*/.idea
 Lab*/Lab*/.idea
-Lab*/Stash/Lab*/.idea
+Lab*/Stash/*/.idea
+Lab*/Stash/*/cmake-build-debug
+Lab*/Stash/*/cmake
